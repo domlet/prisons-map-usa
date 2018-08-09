@@ -2,44 +2,26 @@
 <html>
   <head>
     <meta charset='utf-8' />
-    <title>Map of United States Prisons (Federal and State)</title>
+    <title>Map of Prisons in the United States (Federal and State)</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+    <script src='script.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 90%;
-      }
-      #legend {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 10%;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div id='legend'></div>
     <div id='map'></div>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiZG9tbGV0IiwiYSI6ImNqZGV1eHA1YzAwNzAzM28yN2Y4Mmxwd3YifQ.8DZbUv5Ma3cquNj-CZ0grw'; 
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/domlet/cje5spli416mk2so6jsybpa0d', // replace this with your style URL
+      style: 'mapbox://styles/domlet/cje5spli416mk2so6jsybpa0d',
       center: [-117.543,38.052],
       zoom: 2.7
     });
     map.on('click', function(e) {
       var features = map.queryRenderedFeatures(e.point, {
-        layers: ['us-prisons-federal-prison-resour','us-prisons-state-1-prison-resour','us-prisons-state-2-prison-resour'] // replace this with the name of the layer
+        layers: ['us-prisons-federal-prison-resour','us-prisons-state-1-prison-resour','us-prisons-state-2-prison-resour']
       });
 
       if (!features.length) {
