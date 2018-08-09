@@ -10,4 +10,4 @@ Map of state and federal prisons in the United States, created with Mapbox and J
 * Tweet me at https://twitter.com/domlet with any questions.
 
 ### Preview
-* See https://bit.ly/prisons-map-usa-style-only to ciew the style only (no JavaScript or interactivity)
+* See https://bit.ly/prisons-map-usa-style-only to ciew the style only (no JavaScript or interactivity).
