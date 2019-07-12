@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Fly to a location</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body> 
+<style>
+#fly {
+display: block;
+position: relative;
+margin: 0 auto;
+width: 3em;
+height: 2em;
+padding: 0;
+border: none;
+border-radius: 3px;
+font-size: 0.5em;
+text-align: center;
+color: #fff;
+background: #000;
+}
+</style>
+
+<div id='map'></div>
+<br/>
+<!-- <button id='fly'>飛ぶ</button> -->
+
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZG9tYm94IiwiYSI6ImNqZXJmcXo2azExYnkzM3FudTZpc3VydzYifQ.rC2zknJroNXBbHPkUnIPyQ';
+var map = new mapboxgl.Map({
+container: 'map',
+// style: 'mapbox://styles/dombox/cjxnop2x72xzv1cp6b1byrxdb', // tristen
+// style: 'mapbox://styles/dombox/cjva9vgyqdt8n1fpacwo9ickx', // wham
+// style: 'mapbox://styles/dombox/cjvzidy091bip1cqv3vujbfdx', // telem
+// style: 'mapbox://styles/dombox/cjxtt5s483ssd1cpo8cj63edv', // stranger things
+// style: 'mapbox://styles/dombox/cjxv0ris112iv1cnstvpg0xmu', // Decimal
+// style: 'mapbox://styles/dombox/cjxtt4wp98n7v1cnrq3du7sd9', // 8-bit
+// style: 'mapbox://styles/dombox/cjva3lwxa8k8c1fqxyhq4zctq', // architect
+// style: 'mapbox://styles/dombox/cjvwqf97m13lh1cmrduzv0lul', // minimo
+// style: 'mapbox://styles/dombox/cjphp0huz3ima2rl8tbf0fsxl', // ski
+// style: 'mapbox://styles/dombox/cjphcyd5e2sns2sqn8dxyscw5', // labelmaker
+// style: 'mapbox://styles/dombox/cjnl4yn8m9e7e2smfuzqmwoja', // dark
+// style: 'mapbox://styles/dombox/cjmwlsxgk13mt2spcu46mitwp', // happy
+// style: 'mapbox://styles/dombox/cjnfk4z4d0ldl2rs75q1rbfbp', // Cartogram
+// style: 'mapbox://styles/dombox/cjxv1igjj73y81cs6te131gbz', // Monochrome
+// style: 'mapbox://styles/dombox/cjxv1kt1a9t651cnymdmbxmn2', // Mineral
+// style: 'mapbox://styles/dombox/cjxwmhs386f921crpvrq2ais9', // Navigation Preview Night
+// style: 'mapbox://styles/dombox/cjxwsp0pfbg6a1ckc67dt4jkm', // Streets
+// style: 'mapbox://styles/dombox/cjxwmhctxbaba1cqmvrmq7w7y', // Basic
+// style: 'mapbox://styles/dombox/cjxwstgts0hqo1cn1ri0oy6lv', // Outdoors
+// style: 'mapbox://styles/dombox/cjxwsxb1j0j6u1clmh9ln13jx', // Satellite Streets
+// style: 'mapbox://styles/dombox/cjxwswpg11rs01cozlj976vxy', // Satellite
+// style: 'mapbox://styles/dombox/cjxwsu8lg1rs21cmn2c2vamsd', // Navigation Preview Day
+// style: 'mapbox://styles/dombox/cjxwsva486l8z1crp2agatypj', // Navigation Guidance Day
+// style: 'mapbox://styles/dombox/cjxwt1c5d0j501clwboq2pd7x', // Navigation Guidance Night
+// style: 'mapbox://styles/dombox/cjxwsz4fn8ri61cs615ndwx6k', // Light
+// style: 'mapbox://styles/dombox/cjxwt0bw60hxh1cmqajlx8ek4', // Streets
+// style: 'mapbox://styles/dombox/cjpg00se11iwx2rqhtanch0fd', // domlet book club
+// style: 'mapbox://styles/dombox/cjnon6jd91f0y2rqm059iidzb', // domlet voter session
+
+
+// style: 'mapbox://styles/dombox/cjxzkjveh1tg81cquh4ndff3n', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkrajt0bd01cmtx3qyej5q', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkrhl71tm21cqjwnsxt3hn', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkrnvz1tj61cpdhmrsu09r', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkru2d0htf1cn1jmmw9ytk', // temp ja
+// style: 'mapbox://styles/dombox/cjxzks07w0hpf1cmszbpzp8mc', // temp ja
+// style: 'mapbox://styles/dombox/cjxzksata0hqe1cms7sa0ywmu', // temp ja
+// style: 'mapbox://styles/dombox/cjxzksvqn0huc1cn15x0ep7xa', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkt0ra0ima1co4josg26p3', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkt79a1sti1dmqh8c9g1ck', // temp ja
+// style: 'mapbox://styles/dombox/cjxzktcuc1tla1cpbxt8vnonv', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkticx0p0q1cpizbtnj7dm', // temp ja
+// style: 'mapbox://styles/dombox/cjxzktsks0hw81cr22qq9hgfa', // temp ja
+// style: 'mapbox://styles/dombox/cjxzktyak1tky1cptyo0i005e', // temp ja
+// style: 'mapbox://styles/dombox/cjxzku4tx0hvd1cn1lzhh94m3', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkubgi1suj1dmqgxg79yli', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkuk4l0ht11csasly46utn', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkupnt0inn1co4npsbtlzh', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkuv4g0z1v1cmpuly5bcwx', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkv0q11tld1co843bcmvmr', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkvgi90hsw1cocbr927sw6', // temp ja
+// style: 'mapbox://styles/dombox/cjxzkvvan0hvp1co58lql5we5', // temp ja
+// style: 'mapbox://styles/dombox/cjxzmz3mv1vj71csvuhhzaprl', // temp ja
+// style: 'mapbox://styles/dombox/cjxzn1j2x0qx31cpim8uj2uad', // temp ja
+// style: 'mapbox://styles/dombox/cjxzn362o0jp51cn20usi8ims', // temp ja
+// style: 'mapbox://styles/dombox/cjxzn4pip1q6i1cph7zckxsny', // temp ja
+// style: 'mapbox://styles/dombox/cjxzn6ej80jsi1cqw0fdx1mjy', // temp ja
+// style: 'mapbox://styles/dombox/cjxznbjcj1vsc1dqcjayxhbsm', // temp ja
+// style: 'mapbox://styles/dombox/cjxzntx9f0kg31cn1jjqfq9wo', // temp ja
+// style: 'mapbox://styles/dombox/cjxnop2x72xzv1cp6b1byrxdb', // tristen
+style: 'mapbox://styles/dombox/cjxzo58pf0kmx1csa4o1eq6i7', // tristen
+
+
+
+
+// center: [-122.4355, 37.7627], // San Francisco
+// center: [135.5023,34.6937], // Osaka
+center: [139.766336, 35.6762], // Tokyo
+
+// zoom: 1 // 
+// zoom: 2 // 
+// zoom: 3 // 
+// zoom: 4 // 
+// zoom: 5 // 
+// zoom: 6 // 
+// zoom: 7 // 
+zoom: 8 // NARRATIVE VIDEO
+// zoom: 9 // 
+// zoom: 10 // 
+// zoom: 11 // 
+// zoom: 12 // 
+// zoom: 13 // 
+// zoom: 14 // 
+// zoom: 15 // 
+// zoom: 16 // data kiosk
+// zoom: 17 // 
+// zoom: 18 // 
+// zoom: 19 // 
+// zoom: 20 // 
+// zoom: 21 // 
+// zoom: 22 // 
+// zoom: 23 // 
+});
+
+// This variable will track your current coordinate array's index.
+// From https://stackoverflow.com/questions/40569420/looping-through-coordinates-in-mapbox
+var idx = 0;
+
+// Tokyo
+var arrayOfCoordinates = [  
+    // [139.766336, 35.6762], // Tokyo (same as start)
+    // [139.768382, 35.733044], // Rainbow Bridge
+    // [139.7683, 35.7330], // Rainbow Bridge
+    // [139.659972, 35.627066], // Olympic Park
+    [139.700952, 35.691005], // Nishi-Nippori Station
+    [139.987408, 35.689177], // Funabashi Water Park
+    [139.766336, 35.6762] // Center
+ ]
+
+// Rotation
+// var arrayOfCoordinates = [  
+//     [139.766335, 35.6763], // Rainbow Bridge
+//  ]
+
+
+document.getElementById('fly').addEventListener('click', function () {
+    // Back to the first coordinate.
+    if (idx >= arrayOfCoordinates.length) {
+        idx = 0;
+    }
+
+    map.flyTo({
+        center: arrayOfCoordinates[idx],
+        pitch: 200,
+        bearing: 90,
+        speed: .2,
+        zoom: 14,
+    });
+
+    idx++;
+});
+
+// document.getElementById('fly').addEventListener('click', function () {
+// // Fly to a random location by offsetting the point 
+// map.flyTo({
+// 	center: [
+// 		139.6503 + (Math.random() - 0.0001) * .2,
+// 		35.6762 + (Math.random() + 0.0001) * .2],
+// 	speed: 0.2, 
+// 			});
+// });
+
+</script>
+ 
+</body>
+</html>
